@@ -1,6 +1,9 @@
 import subprocess
 import json
-from flask import Flask, jsonify
+from flask import Flask, jsonify, Blueprint
+
+decorate_bp = Blueprint('decorate', __name__, url_prefix='/decorate/')
+
 def run_java():
     try:
         classPath = "target/classes;target/dependency/*"
@@ -14,17 +17,14 @@ def run_java():
     except FileNotFoundError:
         print("Java is not installed or not found in the system path.")
 
-def create_app():
-    app = Flask(__name__)
-    @app.route('/get-data')
-    def getJson():
-        run_java()
-        with open('src\\main\\tmp\\data.json','r', encoding = 'utf_8') as f:
-            data = json.load(f)
-            return jsonify(data)
-    return app
+@decorate_bp.get('/get-data')
+def getJson():
+    run_java()
+    with open('backend\\api\\news_for_decorate_AM\\src\\main\\tmp\\data.json','r', encoding = 'utf_8') as f:
+        data = json.load(f)
+        return jsonify(data)
 
-if __name__ == "__main__":
-    app = create_app()
-    app.run(debug=True)
+# if __name__ == "__main__":
+#     app = create_app()
+#     app.run(debug=True)
 

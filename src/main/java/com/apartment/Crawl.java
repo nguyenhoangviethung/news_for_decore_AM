@@ -35,7 +35,7 @@ public class Crawl {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(data);
 
-        FileWriter fw = new FileWriter("src\\main\\tmp\\data.json", Charset.forName("utf-8"));
+        FileWriter fw = new FileWriter("backend\\api\\news_for_decorate_AM\\src\\main\\tmp\\data.json", Charset.forName("utf-8"));
         fw.write(json);
         fw.close();
     }
