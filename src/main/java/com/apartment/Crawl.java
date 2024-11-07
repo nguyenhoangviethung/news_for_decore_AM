@@ -23,6 +23,9 @@ public class Crawl {
             item.setSummary(doc);
             item.setContent(doc);
             item.setLinkImage(doc);
+            if(item.checkNullOrEmpty()){
+                continue;
+            }
             data.add(item);
         }
         return data;

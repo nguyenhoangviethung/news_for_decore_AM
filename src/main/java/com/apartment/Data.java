@@ -26,18 +26,56 @@ public class Data {
     }
 
     void setSummary(Document doc){
-        this.summary = doc.selectFirst("meta[name=description]").attr("content");
+        Element temp = doc.selectFirst("meta[name=description]");
+        if(temp != null){
+            this.summary = temp.attr("content");
+        }
+        else this.summary = null;
     }
     void setTitle(Document doc){
-        this.title = doc.selectFirst("h1").text();
+        Element temp = doc.selectFirst("h1");
+        if(temp !=null){ 
+            this.title = temp.text();
+        }
+        else this.title = null;
+
     }
-    void setContent(Document doc){
+    void setContent(Document doc) {
         Elements ps = doc.select("p").select(".text");
-        for(Element e : ps){
-            this.content += e.text() + "\n";
+        if (ps != null && !ps.isEmpty()) {
+            for (Element e : ps) {
+                this.content += e.text() + "\n";
+            }
+        } else {
+            this.content = null;    
         }
     }
-    void setLinkImage(Document doc){
-        this.linkImage = doc.selectFirst("meta[property=og:image]").attr("content");
+    void setLinkImage(Document doc) {
+        Element metaTag = doc.selectFirst("meta[property=og:image]");
+        if (metaTag != null) {
+            this.linkImage = metaTag.attr("content");
+            if (this.linkImage.isEmpty()) {
+            }
+        } else {
+            this.linkImage = null;
+        }
     }
+    
+    boolean checkNullOrEmpty() {
+        if (title == null || title.isEmpty()) {
+            return true;  
+        }
+        if (content == null || content.isEmpty()) {
+            return true;  
+        }
+        if (linkImage == null || linkImage.isEmpty()) {
+            return true;  
+        }
+        if (summary == null || summary.isEmpty()) {
+            return true;  
+        }
+        return false;  
+    }
+    
+    
 }

@@ -1,9 +1,9 @@
 package com.apartment;
 
 import java.util.List;
-import static spark.Spark.*;
-import java.nio.file.*;
-import java.nio.charset.StandardCharsets;
+// import static spark.Spark.*;
+// import java.nio.file.*;
+// import java.nio.charset.StandardCharsets;
 
 
 public class Main{
@@ -13,13 +13,13 @@ public class Main{
         Crawl.crawl(crawl_obj.getData(links));
         System.out.println("Hello world!");
 
-        port(8080);
+        // port(8080);
 
-        get("/news-for-decorate/get-json", (req, res) -> {
-            res.type("app/json");
-            String json =  new String(Files.readAllBytes(Paths.get("src\\main\\tmp\\data.json")), StandardCharsets.UTF_8);
-            return json;
-        });
+        // get("/news-for-decorate/get-json", (req, res) -> {
+        //     res.type("app/json");
+        //     String json =  new String(Files.readAllBytes(Paths.get("src\\main\\tmp\\data.json")), StandardCharsets.UTF_8);
+        //     return json;
+        // });
 
     }
 }
