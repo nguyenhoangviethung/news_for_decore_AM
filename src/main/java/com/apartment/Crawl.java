@@ -32,9 +32,8 @@ public class Crawl {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(data);
 
-        FileWriter fw = new FileWriter("src\\main\\resources\\data1.json", Charset.forName("utf-8"));
+        FileWriter fw = new FileWriter("src\\main\\tmp\\data.json", Charset.forName("utf-8"));
         fw.write(json);
         fw.close();
-        System.out.println("Xong");
     }
 }
